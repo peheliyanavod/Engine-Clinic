@@ -8,7 +8,9 @@
 }
 
 nav{
-    background: black;
+    background: #5d5c5c1a;
+    border: 1px solid #ffffff20;
+    backdrop-filter: blur(8px) saturate(120%);
     padding: 1rem;
 }
 
@@ -29,9 +31,27 @@ nav ul li a{
     text-decoration: none;
     padding: 0.5 rem 1rem;
     display: block;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 0.5rem 1rem;
+    transition: color 0.25s;
 }
 
 nav ul li a:hover{
-    color: rgb(159, 159, 159);
+    color: rgb(113, 113, 113);
+}
+
+.bacground{
+    height: 100%;
+    width: 100%;
+    float: left;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: none;
+    position: fixed;
+    object-fit: cover;
+    z-index: -1;
 }
 
