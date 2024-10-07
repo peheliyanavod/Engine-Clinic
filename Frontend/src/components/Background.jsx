@@ -1,20 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 
-const Background = () => {
+// const Background = () => {
 
-    let [background,setBackground] = useState(1);
-    let backgroundData = [
-        {text:"pic1"},
-        {text:"pic2"},
-        {text:"pic3"}
-    ]
+//     let [background,setBackground] = useState(1);
+//     let backgroundData = [
+//         {text:"pic1"},
+//         {text:"pic2"},
+//         {text:"pic3"}
+//     ]
 
-  return (
-    <div>
+//   return (
+//     <div>
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default Background;
+// export default Background;
