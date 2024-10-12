@@ -1,5 +1,8 @@
 const { User } = require("../models");
 const jwt = require('jsonwebtoken');
+const jwtSecret = "ifhoie iuieb ieheoiu";
+
+
 
 const signup = async (req, res, next) => {
   try {
@@ -75,7 +78,6 @@ const signin = async (req, res, next) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role,
     },
     jwtSecret,
     {
@@ -91,12 +93,9 @@ res.status(200).json({
       });
 
 
-
-
-
   } catch (error) {
     next();
   }
 };
 
-module.exports = { signup };
+module.exports = { signup, signin };
