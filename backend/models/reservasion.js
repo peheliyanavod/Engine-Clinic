@@ -1,30 +1,34 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const reservasionSchema = mongoose.Schema({
+    registerNumber:{
+        type: String,
+        required: true
+    },
     username:{
         type: String,
         required: true
     },
-    name:{
+    date:{
         type: String,
         required: true
     },
-    email:{
+    time:{
         type: String,
         required: true, 
         unique: true,
         trim: true
     },
-    password:{
+    location:{
         type: String,
         required: true,
         minlength: 6
     },
-    contact:{
+    mileage:{
         type: String,
         required: true
     },
-    country:{
+    message:{
         type: String,
         required: true
     },
@@ -32,5 +36,5 @@ const userSchema = mongoose.Schema({
 {timestamp: true}
 );
 
-const User = mongoose.model("user",userSchema);
-module.exports = User;
+const Reservasion = mongoose.model("reservasion",reservasionSchema);
+module.exports = Reservasion;

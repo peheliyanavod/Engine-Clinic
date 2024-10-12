@@ -1,12 +1,10 @@
 const { User } = require("../models");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const jwtSecret = "ifhoie iuieb ieheoiu";
-
-
 
 const signup = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, contact, country } = req.body;
     const isEmailExist = await User.findOne({ email });
 
     if (isEmailExist) {
@@ -24,6 +22,16 @@ const signup = async (req, res, next) => {
       throw new Error("Email is required");
     }
 
+    if (!contact) {
+      res.code = 400;
+      throw new Error("Contact is required");
+    }
+
+    if (!country) {
+      res.code = 400;
+      throw new Error("Country is required");
+    }
+
     if (!password) {
       res.code = 400;
       throw new Error("Password is required");
@@ -34,7 +42,7 @@ const signup = async (req, res, next) => {
       throw new Error("Password should be 6 char long");
     }
 
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, email,contact, country, password });
 
     await newUser.save();
 
@@ -65,34 +73,33 @@ const signin = async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-        res.code = 401;
-        throw new Error("Invalid credentials");
+      res.code = 401;
+      throw new Error("Invalid credentials");
     }
 
-    if(user.password != password){
-        res.code = 401;
-        throw new Error("Invalid credentials");
+    if (user.password != password) {
+      res.code = 401;
+      throw new Error("Invalid credentials");
     }
 
-    const token = jwt.sign({
+    const token = jwt.sign(
+      {
         _id: user._id,
         name: user.name,
         email: user.email,
-    },
-    jwtSecret,
-    {
+      },
+      jwtSecret,
+      {
         expiresIn: "7d",
-    }
-);
+      }
+    );
 
-res.status(200).json({
-        code: 200,
-        status: true,
-        message: "User signin successfully",
-        data: { token },
-      });
-
-
+    res.status(200).json({
+      code: 200,
+      status: true,
+      message: "User signin successfully",
+      data: { token },
+    });
   } catch (error) {
     next();
   }
