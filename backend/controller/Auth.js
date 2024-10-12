@@ -42,7 +42,7 @@ const signup = async (req, res, next) => {
       throw new Error("Password should be 6 char long");
     }
 
-    const newUser = new User({ name, email,contact, country, password });
+    const newUser = new User({ name, email, contact, country, password });
 
     await newUser.save();
 
@@ -101,7 +101,7 @@ const signin = async (req, res, next) => {
       data: { token },
     });
   } catch (error) {
-    next();
+    next(error);
   }
 };
 

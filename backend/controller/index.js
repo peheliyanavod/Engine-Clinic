@@ -1,6 +1,7 @@
 const authController = require('./auth');
+const reservasionController = require('./reservasion');
 
-module.exports = {authController,};
+module.exports = {authController, reservasionController};
 
 
 

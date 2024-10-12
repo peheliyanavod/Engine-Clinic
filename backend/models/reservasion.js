@@ -37,4 +37,5 @@ const reservasionSchema = mongoose.Schema({
 );
 
 const Reservasion = mongoose.model("reservasion",reservasionSchema);
+
 module.exports = Reservasion;
