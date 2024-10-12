@@ -15,14 +15,11 @@ const reservasionSchema = mongoose.Schema({
     },
     time:{
         type: String,
-        required: true, 
-        unique: true,
-        trim: true
+        required: true
     },
     location:{
         type: String,
-        required: true,
-        minlength: 6
+        required: true
     },
     mileage:{
         type: String,

@@ -1,63 +1,47 @@
-const {Reservasion} = require("../models");
+const { Reservasion } = require("../models");
 
 const addReservasion = async (req, res, next) => {
   try {
     const { registerNumber, username, date, time, location, mileage, message } =
       req.body;
 
-
     //validate the time to check that time resrved or not
     //take the user name from the token
 
-    // if (!registerNumber) {
-    //   res.code = 400;
-    //   throw new Error("Register Number is required");
-    // }
-    // if (!username) {
-    //   res.code = 400;
-    //   throw new Error("Useraname is required");
-    // }
-    // if (!date) {
-    //   res.code = 400;
-    //   throw new Error("Date is required");
-    // }
-    // if (!time) {
-    //   res.code = 400;
-    //   throw new Error("Time is required");
-    // }
-    // if (!location) {
-    //   res.code = 400;
-    //   throw new Error("Location is required");
-    // }
-    // if (!mileage) {
-    //   res.code = 400;
-    //   throw new Error("Mileage is required");
-    // }
-    // if (!message) {
-    //   res.code = 400;
-    //   throw new Error("Message is required");
-    // }
-
     if (!registerNumber) {
-      return res.status(400).json({ status: false, message: "Register Number is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Register Number is required" });
     }
     if (!username) {
-      return res.status(400).json({ status: false, message: "Username is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Username is required" });
     }
     if (!date) {
-      return res.status(400).json({ status: false, message: "Date is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Date is required" });
     }
     if (!time) {
-      return res.status(400).json({ status: false, message: "Time is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Time is required" });
     }
     if (!location) {
-      return res.status(400).json({ status: false, message: "Location is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Location is required" });
     }
     if (!mileage) {
-      return res.status(400).json({ status: false, message: "Mileage is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Mileage is required" });
     }
     if (!message) {
-      return res.status(400).json({ status: false, message: "Message is required" });
+      return res
+        .status(400)
+        .json({ status: false, message: "Message is required" });
     }
 
     const newReservasion = new Reservasion({
@@ -70,10 +54,7 @@ const addReservasion = async (req, res, next) => {
       message,
     });
 
-
-
     await newReservasion.save();
-
 
     res.status(203).json({
       code: 201,
@@ -85,4 +66,25 @@ const addReservasion = async (req, res, next) => {
   }
 };
 
-module.exports = { addReservasion };
+const deleteReservasion = async (req, res, next) => {
+  try {
+    const { registerNumber } = req.params;
+
+    const reservasion = await Reservasion.findOne({ registerNumber });
+
+    if (!reservasion) {
+      return res.status(404).json({ status: false, message: "Reservation not found" });
+    }
+
+    await Reservasion.findOneAndDelete({ registerNumber });
+
+    res.status(200).json({
+      status: true,
+      message: "Reservation deleted successfully",
+    });
+  } catch (error) {
+    next(error); 
+  }
+};
+
+module.exports = { addReservasion, deleteReservasion };
