@@ -104,10 +104,23 @@ const getReservasions = async (req, res, next) => {
   }
 };
 
+const getSingleReservasion = async (req, res, next) => {
+  try {
+      const {registerNumber} = req.params;
+      const reservasion = await Reservasion.findOne({registerNumber});
+      if(!reservasion){
+          res.code = 404;
+          throw new Error("Reservasion not found");
+      }
+
+      res.status(200).json({code: 200, status: true, message: "Get Rservasion details successfully", data: {reservasion}});
+  } catch (error) {
+      next(error);
+  }
+}
 
 
 
 
 
-
-module.exports = { addReservasion, deleteReservasion, getReservasions };
+module.exports = { addReservasion, deleteReservasion, getReservasions, getSingleReservasion };
