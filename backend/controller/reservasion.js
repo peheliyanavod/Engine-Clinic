@@ -87,4 +87,27 @@ const deleteReservasion = async (req, res, next) => {
   }
 };
 
-module.exports = { addReservasion, deleteReservasion };
+
+
+
+const getReservasions = async (req, res, next) => {
+  try {
+
+      
+    const reservasions = await Reservasion.find({});
+    res.json({status: "OK",data: reservasions});
+      
+      
+
+  } catch (error) {
+      next(error);
+  }
+};
+
+
+
+
+
+
+
+module.exports = { addReservasion, deleteReservasion, getReservasions };
