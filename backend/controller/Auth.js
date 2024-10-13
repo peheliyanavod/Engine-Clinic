@@ -4,45 +4,49 @@ const jwtSecret = "ifhoie iuieb ieheoiu";
 
 const signup = async (req, res, next) => {
   try {
-    const { name, email, password, contact, country } = req.body;
+    const { name, username, email, password, contact, country } = req.body;
     const isEmailExist = await User.findOne({ email });
 
     if (isEmailExist) {
-      res.code = 400;
-      throw new Error("Email already exist");
+      return res.status(400).json({ message: "Email is Exist" });
     }
 
     if (!name) {
-      res.code = 400;
-      throw new Error("Name is required");
+      return res.status(400).json({ message: "Name is required" });
+
+    }
+
+    if (!username) {
+      return res.status(400).json({ message: "Username is required" });
+
     }
 
     if (!email) {
-      res.code = 400;
-      throw new Error("Email is required");
+      return res.status(400).json({ message: "Email is required" });
+
     }
 
     if (!contact) {
-      res.code = 400;
-      throw new Error("Contact is required");
+      return res.status(400).json({ message: "Contact is required" });
+
     }
 
     if (!country) {
-      res.code = 400;
-      throw new Error("Country is required");
+      return res.status(400).json({ message: "Country is required" });
+
     }
 
     if (!password) {
-      res.code = 400;
-      throw new Error("Password is required");
+      return res.status(400).json({ message: "Password is required" });
+
     }
 
     if (password.length < 6) {
-      res.code = 400;
-      throw new Error("Password should be 6 char long");
+      return res.status(400).json({ message: "Password minimum length is 6 " });
+
     }
 
-    const newUser = new User({ name, email, contact, country, password });
+    const newUser = new User({ name, username, email, contact, country, password });
 
     await newUser.save();
 
@@ -61,25 +65,21 @@ const signin = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email) {
-      res.code = 400;
-      throw new Error("Email is required");
+      return res.status(400).json({ message: "Email is required" });
     }
 
     if (!password) {
-      res.code = 400;
-      throw new Error("Password is required");
+      return res.status(400).json({ message: "Password is required" });
     }
 
     const user = await User.findOne({ email });
 
     if (!user) {
-      res.code = 401;
-      throw new Error("Invalid credentials");
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     if (user.password != password) {
-      res.code = 401;
-      throw new Error("Invalid credentials");
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = jwt.sign(
@@ -97,12 +97,13 @@ const signin = async (req, res, next) => {
     res.status(200).json({
       code: 200,
       status: true,
-      message: "User signin successfully",
+      message: "User login successfully",
       data: { token },
     });
   } catch (error) {
     next(error);
   }
 };
+
 
 module.exports = { signup, signin };
