@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Signin = () => {
   const [data, setData] = useState({
@@ -41,6 +42,8 @@ const Signin = () => {
     }
   };
   return (
+    <div>
+      <Navbar/>
     <div className="mx-20 px-20">
       <h1 className="text-4xl text-center py-4">Sign In</h1>
 
@@ -176,6 +179,7 @@ const Signin = () => {
           <a href="/login">You already have an account?</a>
         </div>
       </form>
+    </div>
     </div>
   );
 };
