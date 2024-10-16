@@ -3,15 +3,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const Signin = () => {
-  const [data, setData] = useState({
-    name: "",
+const ReservasionForm = () => {
+  const [data, setData] = useState({ 
+    registerNumber: "",
     username: "",
-    email: "",
-    contact: "",
-    country: "",
-    password: "",
-    confirmPassword: "",
+    date: "",
+    time: "",
+    location: "",
+    mileage: "",
+    message: "",
   });
 
   const [error, setError] = useState();
@@ -22,11 +22,11 @@ const Signin = () => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const handleSignup = async (e) => {
+  const handleReservasion = async (e) => {
     e.preventDefault();
     try {
       const { data: res } = await axios.post(
-        "http://localhost:8000/api/v1/auth/signup",
+        "http://localhost:8000/api/v1/reservasion/addReservasion",
         data
       );
       navigate("/login");
@@ -51,34 +51,18 @@ const Signin = () => {
 
       <form
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        onSubmit={handleSignup}
+        onSubmit={handleReservasion}
       >
         <div className="col-span-2 flex flex-col">
-          <label htmlFor="name" className="font-semibold mb-1">
-            Name
+          <label htmlFor="registerNumber" className="font-semibold mb-1">
+            Register Number
           </label>
           <div className="relative">
             <input
               type="text"
               className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="name"
-              value={data.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="col-span-2 flex flex-col">
-          <label htmlFor="email" className="font-semibold mb-1">
-            Email
-          </label>
-          <div className="relative">
-            <input
-              type="email"
-              className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="email"
-              value={data.email}
+              name="registerNumber"
+              value={data.registerNumber}
               onChange={handleChange}
               required
             />
@@ -102,15 +86,31 @@ const Signin = () => {
         </div>
 
         <div className="col-span-2 flex flex-col">
-          <label htmlFor="contact" className="font-semibold mb-1">
-            Contact
+          <label htmlFor="date" className="font-semibold mb-1">
+            Date
           </label>
           <div className="relative">
             <input
               type="text"
               className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="contact"
-              value={data.contact}
+              name="date"
+              value={data.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="col-span-2 flex flex-col">
+          <label htmlFor="contact" className="font-semibold mb-1">
+            Time
+          </label>
+          <div className="relative">
+            <input
+              type="text"
+              className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="time"
+              value={data.time}
               onChange={handleChange}
               required
             />
@@ -118,13 +118,13 @@ const Signin = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="country" className="font-semibold mb-1">
+          <label htmlFor="location" className="font-semibold mb-1">
             Country
           </label>
           <select
             className="border border-gray-300 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            name="country"
-            value={data.country}
+            name="location"
+            value={data.location}
             onChange={handleChange}
             required
           >
@@ -138,15 +138,15 @@ const Signin = () => {
         </div>
 
         <div className="col-span-2 flex flex-col">
-          <label htmlFor="password" className="font-semibold mb-1">
+          <label htmlFor="mileage" className="font-semibold mb-1">
             Password
           </label>
           <div className="relative">
             <input
-              type="password"
+              type="text"
               className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="password"
-              value={data.password}
+              name="mileage"
+              value={data.mileage}
               onChange={handleChange}
               required
             />
@@ -154,15 +154,15 @@ const Signin = () => {
         </div>
 
         <div className="col-span-2 flex flex-col">
-          <label htmlFor="confirmPassword" className="font-semibold mb-1">
+          <label htmlFor="message" className="font-semibold mb-1">
             Confirm Password
           </label>
           <div className="relative">
             <input
-              type="password"
+              type="text"
               className="pl-2 border border-gray-300 p-1 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="confirmPassword"
-              value={data.confirmPassword}
+              name="message"
+              value={data.message}
               onChange={handleChange}
               required
             />
@@ -174,9 +174,8 @@ const Signin = () => {
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="submit"
           >
-            Submit
+            Add
           </button>
-          <a href="/login">You already have an account?</a>
         </div>
       </form>
     </div>
@@ -184,4 +183,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default ReservasionForm;

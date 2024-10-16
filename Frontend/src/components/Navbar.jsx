@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className="bg-gray-100 shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <a className="text-xl font-semibold text-gray-800 hover:text-gray-600" href="/">
-          Navbar
+          Engine-Clinic
         </a>
         <button
           className="block lg:hidden text-gray-800 focus:outline-none"
@@ -42,6 +42,12 @@ const Navbar = () => {
           </a>
           <a className="text-gray-800 hover:text-gray-600" href="/login">
             Login
+          </a>
+          <a className="text-gray-800 hover:text-gray-600" href="/reservasions">
+            Reservations
+          </a>
+          <a className="text-gray-800 hover:text-gray-600" href="/addReservasion">
+            Add Reservation
           </a>
         </div>
         <div className="hidden lg:flex">

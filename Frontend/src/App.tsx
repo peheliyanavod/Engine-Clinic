@@ -6,6 +6,8 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Services from "./pages/Services";
+import ReservasionForm from "./pages/ReservationForm";
+import Reservations from "./pages/Reservations";
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
       <Route path="login" element={<Login/>}/>
       <Route path="signup" element={<Signup/>}/>
       <Route path="services" element={<Services/>}/>
+      <Route path="addReservasion" element={<ReservasionForm/>}/>
+      <Route path="reservasions" element={<Reservations/>}/>
     </Routes>
     </BrowserRouter>
   )
