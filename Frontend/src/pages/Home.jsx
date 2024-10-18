@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import HomeSlider from "../components/HomeSlider";
 
 const Home = () => {
   const {
@@ -36,7 +37,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      
+      <HomeSlider/>
     </div>
   );
 };

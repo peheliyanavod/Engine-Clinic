@@ -12,7 +12,6 @@ const Navbar = () => {
   } = useAuth0();
 
   return (
-
     <nav className="bg-gray-100 shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <a
