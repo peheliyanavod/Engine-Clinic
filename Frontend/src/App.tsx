@@ -8,6 +8,8 @@ import Signup from './pages/Signup';
 import Services from "./pages/Services";
 import ReservasionForm from "./pages/ReservationForm";
 import Reservations from "./pages/Reservations";
+import Profile from "./pages/Profile";
+
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
       <Route path="services" element={<Services/>}/>
       <Route path="addReservasion" element={<ReservasionForm/>}/>
       <Route path="reservasions" element={<Reservations/>}/>
+      <Route path="profile" element={<Profile/>}/>
     </Routes>
     </BrowserRouter>
   )

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const reservasionSchema = mongoose.Schema({
-    registerNumber:{
+    vehicle_no:{
         type: String,
         required: true
     },
@@ -33,6 +33,4 @@ const reservasionSchema = mongoose.Schema({
 {timestamp: true}
 );
 
-const Reservasion = mongoose.model("reservasion",reservasionSchema);
 
-module.exports = Reservasion;

@@ -2,22 +2,22 @@ const { Reservasion } = require("../models");
 
 const addReservasion = async (req, res, next) => {
   try {
-    const { registerNumber, username, date, time, location, mileage, message } =
+    const { vehicle_no, date, time, location, mileage, message } =
       req.body;
 
     //validate the time to check that time resrved or not
     //take the user name from the token
 
-    if (!registerNumber) {
+    if (!vehicle_no) {
       return res
         .status(400)
-        .json({ status: false, message: "Register Number is required" });
+        .json({ status: false, message: "Vehicle Number is required" });
     }
-    if (!username) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Username is required" });
-    }
+    // if (!username) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: false, message: "Username is required" });
+    // }
     if (!date) {
       return res
         .status(400)
@@ -38,15 +38,15 @@ const addReservasion = async (req, res, next) => {
         .status(400)
         .json({ status: false, message: "Mileage is required" });
     }
-    if (!message) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Message is required" });
-    }
+    // if (!message) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: false, message: "Message is required" });
+    // }
 
     const newReservasion = new Reservasion({
       registerNumber,
-      username,
+      // username,
       date,
       time,
       location,
