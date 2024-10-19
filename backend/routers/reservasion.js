@@ -4,9 +4,9 @@ const {reservasionController} = require("../controller");
 
 
 router.post("/addReservasion", reservasionController.addReservasion);
-router.delete("/deleteReservasion/:registerNumber", reservasionController.deleteReservasion);
-router.get("/getReservasions",reservasionController.getReservasions);
-router.get("/getSingleReservasion/:registerNumber", reservasionController.getSingleReservasion);
+router.delete("/deleteReservasion/:id", reservasionController.deleteReservasion);
+router.get("/getReservasions/:username",reservasionController.getReservasions);
+// router.get("/getSingleReservasion/:registerNumber", reservasionController.getSingleReservasion);
 
 
 

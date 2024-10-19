@@ -3,19 +3,18 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useAuthContext } from "@asgardeo/auth-react";
 
-
 const Reservations = () => {
   const [reservasions, setReservasions] = useState([]);
   const [error, setError] = useState(null);
 
-  const { state, signIn, signOut } = useAuthContext();
+  const { state } = useAuthContext();
   const username = state.username;
 
   useEffect(() => {
     const fetchReservasions = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/v1/reservasion/getReservasions"
+          `http://localhost:8000/api/v1/reservasion/getReservasions/${username}`
         );
         setReservasions(response.data.data);
       } catch (err) {
@@ -24,12 +23,23 @@ const Reservations = () => {
       }
     };
     fetchReservasions();
-  }, []);
+  }, [username]); // Add username as a dependency
 
-  const handleDelete = (id) => {
-    // Add logic to delete the reservation by id
-    console.log("Delete reservation with ID:", id);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(
+        `http://localhost:8000/api/v1/reservasion/deleteReservasion/${id}`
+      );
+      // Filter out the deleted reservation from the state
+      setReservasions((prevReservasions) =>
+        prevReservasions.filter((reservasion) => reservasion._id !== id)
+      );
+    } catch (err) {
+      console.error("Error deleting reservation:", err);
+      setError("Failed to delete reservation");
+    }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-100">

@@ -70,22 +70,22 @@ const addReservasion = async (req, res, next) => {
 
 const deleteReservasion = async (req, res, next) => {
   try {
-    const { registerNumber } = req.params;
+    const { id } = req.params;
 
-    const reservasion = await Reservasion.findOne({ registerNumber });
+    const reservasion = await Reservasion.findById(id); // Use findById for MongoDB _id
 
     if (!reservasion) {
       return res.status(404).json({ status: false, message: "Reservation not found" });
     }
 
-    await Reservasion.findOneAndDelete({ registerNumber });
+    await Reservasion.findByIdAndDelete(id); // Use findByIdAndDelete for MongoDB _id
 
     res.status(200).json({
       status: true,
       message: "Reservation deleted successfully",
     });
   } catch (error) {
-    next(error); 
+    next(error);
   }
 };
 
@@ -94,17 +94,21 @@ const deleteReservasion = async (req, res, next) => {
 
 const getReservasions = async (req, res, next) => {
   try {
+    const { username } = req.params;
+    
+    // Fetch reservations where the username matches the provided one
+    const reservasions = await Reservasion.find({ username: username });
 
-      
-    const reservasions = await Reservasion.find({});
-    res.json({status: "OK",data: reservasions});
-      
-      
+    if (!reservasions.length) {
+      return res.status(404).json({ status: "No reservations found for this user" });
+    }
 
+    res.json({ status: "OK", data: reservasions });
   } catch (error) {
-      next(error);
+    next(error);
   }
 };
+
 
 const getSingleReservasion = async (req, res, next) => {
   try {
