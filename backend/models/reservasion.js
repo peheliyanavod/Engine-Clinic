@@ -7,7 +7,7 @@ const reservasionSchema = mongoose.Schema({
     },
     username:{
         type: String,
-        required: true
+        // required: true
     },
     date:{
         type: String,
@@ -34,3 +34,5 @@ const reservasionSchema = mongoose.Schema({
 );
 
 
+const Reservasion = mongoose.model("reservasion",reservasionSchema);
+module.exports = Reservasion;

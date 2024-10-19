@@ -70,7 +70,7 @@ const HomeSlider = () => {
       <div className="absolute top-10 left-0 right-0 text-center text-white z-10">
         <h2 className="text-3xl md:text-5xl font-bold">Welcome to Engine-Clinic !</h2>
       </div>
-      <div className="absolute bottom-10 left-0 right-0 text-center text-white z-10">
+      <div className="absolute bottom-12 left-0 right-0 text-center text-white z-10">
         <h2 className="text-3xl md:text-5xl font-bold">{images[currentIndex].title}</h2>
         <p className="mt-4 text-lg md:text-xl">{images[currentIndex].description}</p>
       </div>

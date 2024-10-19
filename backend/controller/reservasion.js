@@ -2,51 +2,48 @@ const { Reservasion } = require("../models");
 
 const addReservasion = async (req, res, next) => {
   try {
-    const { vehicle_no, date, time, location, mileage, message } =
-      req.body;
+    const { vehicle_no, date, time, location, mileage, message, username } = req.body;
 
-    //validate the time to check that time resrved or not
-    //take the user name from the token
 
     if (!vehicle_no) {
       return res
         .status(400)
         .json({ status: false, message: "Vehicle Number is required" });
     }
+
     // if (!username) {
     //   return res
     //     .status(400)
     //     .json({ status: false, message: "Username is required" });
     // }
+
     if (!date) {
       return res
         .status(400)
         .json({ status: false, message: "Date is required" });
     }
+
     if (!time) {
       return res
         .status(400)
         .json({ status: false, message: "Time is required" });
     }
+
     if (!location) {
       return res
         .status(400)
         .json({ status: false, message: "Location is required" });
     }
+
     if (!mileage) {
       return res
         .status(400)
         .json({ status: false, message: "Mileage is required" });
     }
-    // if (!message) {
-    //   return res
-    //     .status(400)
-    //     .json({ status: false, message: "Message is required" });
-    // }
 
     const newReservasion = new Reservasion({
-      registerNumber,
-      // username,
+      vehicle_no,
+      username, // Use the username from the token
       date,
       time,
       location,
@@ -56,15 +53,20 @@ const addReservasion = async (req, res, next) => {
 
     await newReservasion.save();
 
-    res.status(203).json({
-      code: 201,
+    res.status(201).json({
       status: true,
-      message: "Reservasion added successfully",
+      message: "Reservation added successfully",
     });
   } catch (error) {
-    next(error);
+    console.log('error', error);
+    res.status(500).json({
+      status: false,
+      message: "An error occurred while adding the reservation",
+      error: error.message,
+    });
   }
 };
+
 
 const deleteReservasion = async (req, res, next) => {
   try {

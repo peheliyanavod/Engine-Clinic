@@ -1,15 +1,11 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthContext } from "@asgardeo/auth-react";
+
 
 const Navbar = () => {
-  const {
-    loginWithPopup,
-    loginWithRedirect,
-    logout,
-    user,
-    isAuthenticated,
-    getAccessTokenSilently,
-  } = useAuth0();
+
+  const { state, signIn, signOut } = useAuthContext();
+
 
   return (
     <nav className="bg-gray-100 shadow-md">
@@ -53,17 +49,17 @@ const Navbar = () => {
           <a className="text-gray-800 hover:text-gray-600" href="/services">
             Services
           </a>
-          {!isAuthenticated && (
+          {!state.isAuthenticated && (
             <>
               <button
                 className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 focus:outline-none"
-                onClick={loginWithPopup}
+                onClick={() => signIn()}
               >
                 Login
               </button>
             </>
           )}
-          {isAuthenticated && (
+          {state.isAuthenticated && (
             <>
               <a
                 className="text-gray-800 hover:text-gray-600"
@@ -82,7 +78,7 @@ const Navbar = () => {
               </a>
               <button
                 className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 focus:outline-none"
-                onClick={logout}
+                onClick={() => signOut()}
               >
                 Logout
               </button>
