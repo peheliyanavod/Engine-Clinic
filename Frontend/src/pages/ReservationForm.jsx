@@ -2,11 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthContext } from "@asgardeo/auth-react";
+
 
 
 const ReservasionForm = () => {
-  // const { user } = useAuth0();
+
+  const { state, signIn, signOut } = useAuthContext();
 
   const [data, setData] = useState({
     vehicle_no: "",
@@ -15,7 +17,7 @@ const ReservasionForm = () => {
     location: "",
     mileage: "",
     message: "",
-    // username: user.name,
+    username: state.username,
   });
 
   
