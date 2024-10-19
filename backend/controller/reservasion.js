@@ -11,11 +11,11 @@ const addReservasion = async (req, res, next) => {
         .json({ status: false, message: "Vehicle Number is required" });
     }
 
-    // if (!username) {
-    //   return res
-    //     .status(400)
-    //     .json({ status: false, message: "Username is required" });
-    // }
+    if (!username) {
+      return res
+        .status(400)
+        .json({ status: false, message: "Username is required" });
+    }
 
     if (!date) {
       return res
