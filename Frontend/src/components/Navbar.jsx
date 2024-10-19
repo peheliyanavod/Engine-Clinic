@@ -1,23 +1,25 @@
 import React from "react";
 import { useAuthContext } from "@asgardeo/auth-react";
-
+import { FaCarAlt } from "react-icons/fa"; // Importing car icon
 
 const Navbar = () => {
-
   const { state, signIn, signOut } = useAuthContext();
 
-
   return (
-    <nav className="bg-gray-100 shadow-md">
-      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+    <nav className="bg-gray-900 shadow-md">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo and Name */}
         <a
-          className="text-xl font-semibold text-gray-800 hover:text-gray-600"
+          className="flex items-center text-2xl font-bold text-white hover:text-gray-400"
           href="/"
         >
+          <FaCarAlt className="mr-2 w-7 h-7 text-green-400" /> {/* Car icon */}
           Engine-Clinic
         </a>
+
+        {/* Hamburger Menu for Mobile */}
         <button
-          className="block lg:hidden text-gray-800 focus:outline-none"
+          className="block lg:hidden text-white focus:outline-none"
           type="button"
           aria-label="Toggle navigation"
         >
@@ -36,48 +38,45 @@ const Navbar = () => {
             ></path>
           </svg>
         </button>
-        <div className="hidden lg:flex items-center space-x-4">
-          <a className="text-gray-800 hover:text-gray-600" href="/">
+
+        {/* Navigation Links */}
+        <div className="hidden lg:flex items-center space-x-8">
+          <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/">
             Home
           </a>
-          <a className="text-gray-800 hover:text-gray-600" href="/about">
+          <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/about">
             About
           </a>
-          <a className="text-gray-800 hover:text-gray-600" href="/contact">
+          <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/contact">
             Contact
           </a>
-          <a className="text-gray-800 hover:text-gray-600" href="/services">
+          <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/services">
             Services
           </a>
+
+          {/* Authentication Links */}
           {!state.isAuthenticated && (
-            <>
-              <button
-                className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 focus:outline-none"
-                onClick={() => signIn()}
-              >
-                Login
-              </button>
-            </>
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 focus:outline-none"
+              onClick={() => signIn()}
+            >
+              Login
+            </button>
           )}
+
           {state.isAuthenticated && (
             <>
-              <a
-                className="text-gray-800 hover:text-gray-600"
-                href="/reservasions"
-              >
+              <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/reservasions">
                 Reservations
               </a>
-              <a
-                className="text-gray-800 hover:text-gray-600"
-                href="/addReservasion"
-              >
+              <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/addReservasion">
                 Add Reservation
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="/profile">
+              <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/profile">
                 Profile
               </a>
               <button
-                className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 focus:outline-none"
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 focus:outline-none"
                 onClick={() => signOut()}
               >
                 Logout
@@ -85,22 +84,6 @@ const Navbar = () => {
             </>
           )}
         </div>
-        {/* <div className="hidden lg:flex">
-          <form className="flex space-x-2">
-            <input
-              className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 focus:outline-none"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-        </div> */}
       </div>
     </nav>
   );

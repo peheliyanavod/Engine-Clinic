@@ -8,11 +8,6 @@ const Profile = () => {
     <div>
       <Navbar />
       <div className="flex flex-col items-center bg-white shadow-md rounded-lg p-6 max-w-md mx-auto mt-10">
-        {/* <img
-          src={user.picture}
-          alt={user.username}
-          className="w-24 h-24 rounded-full shadow-lg"
-        /> */}
         <h2 className="mt-4 text-xl font-semibold text-gray-800">
           {state.username}
         </h2>
@@ -24,20 +19,6 @@ const Profile = () => {
           Logout
         </button>
       </div>
-
-      {/* <div>
-        {state.isAuthenticated ? (
-          <div>
-            <ul>
-              <li>{state.username}</li>
-            </ul>
-
-            <button onClick={() => signOut()}>Logout</button>
-          </div>
-        ) : (
-          <button onClick={() => signIn()}>Login</button>
-        )}
-      </div> */}
     </div>
   );
 };
