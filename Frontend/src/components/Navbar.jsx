@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthContext } from "@asgardeo/auth-react";
-import { FaCarAlt } from "react-icons/fa"; // Importing car icon
+import { FaCarAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const { state, signIn, signOut } = useAuthContext();
@@ -8,16 +8,14 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-900 shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo and Name */}
         <a
           className="flex items-center text-2xl font-bold text-white hover:text-gray-400"
           href="/"
         >
-          <FaCarAlt className="mr-2 w-7 h-7 text-green-400" /> {/* Car icon */}
+          <FaCarAlt className="mr-2 w-7 h-7 text-green-400" /> 
           Engine-Clinic
         </a>
 
-        {/* Hamburger Menu for Mobile */}
         <button
           className="block lg:hidden text-white focus:outline-none"
           type="button"
@@ -39,7 +37,6 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Navigation Links */}
         <div className="hidden lg:flex items-center space-x-8">
           <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/">
             Home
@@ -54,7 +51,6 @@ const Navbar = () => {
             Services
           </a>
 
-          {/* Authentication Links */}
           {!state.isAuthenticated && (
             <button
               className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 focus:outline-none"
@@ -71,9 +67,6 @@ const Navbar = () => {
               </a>
               <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/addReservasion">
                 Add Reservation
-              </a>
-              <a className="text-gray-300 hover:text-gray-400 transition duration-300" href="/profile">
-                Profile
               </a>
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 focus:outline-none"

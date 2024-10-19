@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/Engine Clinic.png";
 
 const Contact = () => {
   return (
